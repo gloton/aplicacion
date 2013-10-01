@@ -1,0 +1,36 @@
+.box600{
+	min-width: 634px; 
+	height: 270px; 
+	margin: 0 !importea ;
+}
+.sqare{
+	margin-top:0px !important;
+	margin-bottom: 0px !important;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+.indicador{
+	float: left;
+ 	border-color: #000000 !important;
+	border-width: 1px !important;
+   	border-style: solid !important;
+   	width: 30%;
+   	text-align: center !important;
+   margin-bottom: -20px;
+}
+.izq {
+	text-align: right;
+	padding-right: 10px;
+}
+
+.header{
+
+height: 70px;
+}
+.controles{
+	height: 60px;
+}
+
+.bajar{
+	  padding-top: 37px;
+}

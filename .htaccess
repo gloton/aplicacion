@@ -1,0 +1,31 @@
+#RewriteEngine On
+# activa modulo de rescritura
+RewriteEngine On
+
+
+#RewriteCond 
+# define una condicion
+# si despues de una linea que contiene RewriteCond le sigue otra
+# esta actua como AND (no es necesario colocarlo)
+# si se coloca [OR], solo es necesario que se cumpla una de las 2
+
+# Esta condición es verdadera cuando la ruta al REQUEST_FILENAME
+# no hace referencia a una carpeta que existe en el servidor.
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Esta condición es verdadera cuando la ruta al REQUEST_FILENAME no hace 
+# referencia a un archivo que existe en el servidor.
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Esta condición es verdadera cuando la ruta al REQUEST_FILENAME no hace 
+# referencia a un enlace simbolico(symlink) que existe en el servidor.
+RewriteCond %{REQUEST_FILENAME} !-l
+
+#RewriteRule
+# es la regla más importante de mod_rewrite, es RewriteRule, 
+# la cual se encarga de la reescritura. La sintaxis es la siguente:
+# RewriteRule <secuencia a buscar> <sustitución> [FLAGS]
+#[L]
+# significa que después de esto ninguna otra regla de 
+# reescritura de URL será procesada
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

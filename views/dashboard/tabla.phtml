@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Dashboard Tickets Clínica DávilaFilipe</title>
+<link href="<?php echo BASE_URL."views/dashboard/"; ?>css/bootstrap.css" rel="stylesheet">
+<link href="<?php echo BASE_URL."views/dashboard/"; ?>css/bootstrap-responsive.css" rel="stylesheet">
+<link href="<?php echo BASE_URL."views/dashboard/"; ?>css/docs.css" rel="stylesheet">
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/jquery.js"></script>
+<!-- Script HighCharts -->
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js/jquery.min.js"></script>
+<!-- js de recuperacion de datos -->
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js/graficos/dia.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js/graficos/mes.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js/graficos/anual.js"></script>
+<!--   tabla  -->
+<link href="<?php echo BASE_URL."views/dashboard/"; ?>css1/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/spinner/ui.spinner.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/wysiwyg/jquery.wysiwyg.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/flot/excanvas.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/flot/jquery.flot.resize.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/tables/jquery.dataTables.js" charset="UTF8"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/forms/autogrowtextarea.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/forms/jquery.dualListBox.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/forms/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/forms/jquery.maskedinput.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/forms/jquery.inputlimiter.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/forms/jquery.tagsinput.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/other/calendar.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/other/elfinder.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/uploader/plupload.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/uploader/plupload.html5.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/uploader/plupload.html4.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/uploader/jquery.plupload.queue.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/wizards/jquery.form.wizard.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/wizards/jquery.validate.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/ui/jquery.ToTop.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/ui/jquery.listnav.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/ui/jquery.sourcerer.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/ui/jquery.timeentry.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/plugins/ui/jquery.prettyPhoto.js"></script>
+		<script type="text/javascript">
+			function preview(int){
+				var conexion;
+				if (window.XMLHttpRequest)			  {
+				  conexion=new XMLHttpRequest();
+				}else
+				  {
+				  conexion=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				conexion.onreadystatechange=function(){
+					if(conexion.readyState==4 && conexion.status==200){
+						document.getElementById("midiv").innerHTML=conexion.responseText;
+						previewTitu(int);
+					}
+				}
+				conexion.open("GET","<?php echo BASE_URL; ?>dashboard/detalle/"+int,true);
+				conexion.send();
+			}
+			function previewTitu(int){
+				var conexion;
+				if (window.XMLHttpRequest)			  {
+				  conexion=new XMLHttpRequest();
+				}else
+				  {
+				  conexion=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				conexion.onreadystatechange=function(){
+					if(conexion.readyState==4 && conexion.status==200){
+						document.getElementById("titulo_detalle").innerHTML=conexion.responseText;
+					}
+				}
+				conexion.open("GET","<?php echo BASE_URL; ?>dashboard/titulomodal/"+int,true);
+				conexion.send();
+			}
+		</script>
+</head>
+<body>
+<div class="container">
+     <div class="row-fluid">  
+        <div class="span12">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="container">                 
+                    <a href="#" class="brand">Dashboard Tickets</a>
+                    <div class="nav-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav pull-right">                     
+                        <li class="divider-vertical"></li>
+                        <li><a href="#">Comparativo</a></li>
+                        <li><a href="#">Hardware</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>dashboard">Software</a></li>
+                        <li class="active"><a href="#">Tabla</a></li>
+                    </ul>
+                    </div><!-- /.nav-collapse -->
+                    </div>
+              </div><!-- /navbar-inner -->
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+                <div class="table">
+            <div class="head"><h5 class="iFrames">Dashboard Tickets Clínica Dávila - Cuadro Resumen</h5></div>
+            <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Fecha Reclamo</th>
+                        <th>Fecha Solución</th>
+                        <th>Estado</th>
+                        <th>Demora(días)</th>
+                        <th>Feriados</th>
+                        <th>Tipo</th>
+                        <th>Sub-Clasificación</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+<?php 
+	for ($i = 0; $i < count($this->registrosTabla['ID_RECLAMO']);$i++){
+?>	
+				 <tr class="gradeA">
+				     <td class="center">
+				     	<button data-toggle="modal" href="#example2" class="btn" value="<?php echo $this->registrosTabla['ID_RECLAMO'][$i];?>" onclick="preview(this.value);">
+				     		<?php   echo $this->registrosTabla['ID_RECLAMO'][$i];?>
+				     	</button>				     
+				     </td>
+				     <td><?php  echo $this->registrosTabla['NOMBRE_RECLAMANTE'][$i];?></td>
+				     <td class="center"><?php echo $this->registrosTabla['FECHA_RECLAMO'][$i]; ?></td>
+				     <td class="center"><?php echo $this->registrosTabla['FECHA_SOLUCION'][$i]; ?></td>
+				     <td class="center"><?php  echo $this->registrosTabla['ESTADO_RECLAMO'][$i]; ?></td>
+				     <td class="center"><?php echo $this->registrosTabla['DIAS_TRANSCURRIDO'][$i]; ?></td>
+				     <td class="center"><?php  echo $this->registrosTabla['FERIADOS'][$i];?></td>
+				     <td class="center"><?php  echo $this->registrosTabla['TIPO'][$i];?></td>
+				     <td class="center"><?php  echo $this->registrosTabla['SUB_CLASIF'][$i];?></td>
+				     <td class="center">
+				     	<button data-toggle="modal" href="#example2" class="btn" value="<?php echo $this->registrosTabla['ID_RECLAMO'][$i];?>" onclick="preview(this.value);">
+				     		<i class="icon-plus"></i>
+				     	</button>
+				     </td>
+				 </tr>			
+<?php 
+	}
+?>	
+                </tbody>
+            </table>
+        </div>
+ 
+        </div>
+    </div>
+</div>
+<!-- inicio de prueba ventana modal -->	
+		<div id="example2" class="modal hide fade in" style="display: none;">
+			<div class="modal-header">
+				<a data-dismiss="modal" class="close">×</a>
+				<h3 id="titulo_detalle"></h3>
+			</div>
+			<div id="midiv" class="modal-body">
+				<!-- inicio conetenido -->               
+				<!-- fin conetenido -->               
+		    </div>
+		    <div class="modal-footer">
+		        <button href="#" data-dismiss="modal" class="btn btn-success">Cerrar</button>
+		    </div>
+		</div>	
+<!-- fin de prueba ventana modal -->	
+<!-- Script HighCharts -->
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/highcharts.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/modules/exporting.js"></script>
+  
+<!-- FlexSlider -->
+<script defer src="<?php echo BASE_URL."views/dashboard/"; ?>js/jquery.flexslider.js"></script>
+<script type="text/javascript">
+$(function(){
+  SyntaxHighlighter.all();
+});
+$(window).load(function() { 
+    $('#myCarousel0').carousel({ interval: 1000 } ); 
+    $('#myCarousel0b').carousel({ interval: 2000 } ); 
+    $('#myCarousel1').carousel({ interval: 5000 } );
+    $('#myCarousel2').carousel({ interval: 5000 } );    
+    $('#myCarousel3').carousel({ interval: 2000 } ); 
+    $('.flexslider').flexslider({
+        animation: "slide",
+        controlNav: true,
+        directionNav: false,           
+        pausePlay: false,
+        animationSpeed: 200,
+        slideshowSpeed: 60000,         
+    });
+});
+</script>
+    
+<!-- Script FlexSlider -->
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js/shCore.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js/shBrushXml.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js/shBrushJScript.js"></script>
+<!-- Script Optional FlexSlider Additions -->
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/jquery.easing.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/jquery.mousewheel.js"></script>
+<script defer src="<?php echo BASE_URL."views/dashboard/"; ?>js/demo.js"></script>
+ <!-- Script Carrusel Bootstrap -->
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js/widgets.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-transition.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-alert.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-modal.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-dropdown.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-scrollspy.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-tab.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-tooltip.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-popover.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-button.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-collapse.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-carousel.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-typeahead.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/bootstrap-affix.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/holder/holder.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/google-code-prettify/prettify.js"></script>
+<script src="<?php echo BASE_URL."views/dashboard/"; ?>js/application.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL."views/dashboard/"; ?>js1/custom.js"></script>
+</body>
+</html>
