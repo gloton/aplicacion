@@ -1,6 +1,6 @@
 /*!
-* Pantalla graficos Dashboard Tickets ClÃ­nica DÃ¡vila
-* Copyright 2013 ClÃ­nica DÃ¡vila.
+* Pantalla graficos Dashboard Tickets Clínica Dávila
+* Copyright 2013 Clínica Dávila.
 * Developed by NsClick
 * Legenda containers:       f1: Graficos fijos 1
 */
@@ -24,7 +24,7 @@ $(function () {
             },
 
             title: {
-                text: 'Cantidad de Resoluciones'
+                text: 'Cantidad de Solicitudes'
             },
 
             <!--- configuraciones del eje x (con cariables php)//-->

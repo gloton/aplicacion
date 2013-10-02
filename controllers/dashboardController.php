@@ -70,9 +70,10 @@ class dashboardController extends Controller
 		/* TABLA TIEMPO DE RESPUESTA FIN*/
 		/* LABELS DEL INDEX INICIO*/		
 		//rellenar los label
-		$this->_view->label_menosde30 = end($menosde30);
-		$this->_view->label_menosde60 = end($menosde60);
-		$this->_view->label_masde60 = end($masde60);
+    	$this->_view->label_entre0y2 = $this->_dashboard->getLabel("<= 2");
+    	$this->_view->label_entre3y5 = $this->_dashboard->getLabel("<= 5");
+    	$this->_view->label_mayora5 = $this->_dashboard->getLabel(" > 5");
+
 		/* LABELS DEL INDEX FIN*/		
 		
     	/* DIAS DE LA SEMANA L-D INICIO*/
@@ -139,11 +140,14 @@ class dashboardController extends Controller
     	$menosde60 = $fecha_recl_mmddaaaa[1];
     	$masde60 = $fecha_recl_mmddaaaa[2];
     	
-    	//rellenar los label
-    	$this->_view->label_menosde30 = end($menosde30);
-    	$this->_view->label_menosde60 = end($menosde60);
-    	$this->_view->label_masde60 = end($masde60);
-		/*(TEMPORAL) LABELS DEL INDEX FIN*/		
+		/* LABELS DEL INDEX INICIO*/		
+		//rellenar los label
+    	$this->_view->label_entre0y2 = $this->_dashboard->getLabel("<= 2");
+    	$this->_view->label_entre3y5 = $this->_dashboard->getLabel("<= 5");
+    	$this->_view->label_mayora5 = $this->_dashboard->getLabel(" > 5");
+
+		/* LABELS DEL INDEX FIN*/		
+		
     	    	
     	//echo "hola semestre";
     	//6 ultimos meses
@@ -325,11 +329,14 @@ class dashboardController extends Controller
     	$menosde60 = $fecha_recl_mmddaaaa[1];
     	$masde60 = $fecha_recl_mmddaaaa[2];
     	 
-    	//rellenar los label
-    	$this->_view->label_menosde30 = end($menosde30);
-    	$this->_view->label_menosde60 = end($menosde60);
-    	$this->_view->label_masde60 = end($masde60);
-    	/*(TEMPORAL) LABELS DEL INDEX FIN*/    	
+		/* LABELS DEL INDEX INICIO*/		
+		//rellenar los label
+    	$this->_view->label_entre0y2 = $this->_dashboard->getLabel("<= 2");
+    	$this->_view->label_entre3y5 = $this->_dashboard->getLabel("<= 5");
+    	$this->_view->label_mayora5 = $this->_dashboard->getLabel(" > 5");
+
+		/* LABELS DEL INDEX FIN*/		
+		
     	/*COLOCAR MESES INICIO*/
     	//12 ultimos meses
     	for ($i=12;$i>=1;$i--) {

@@ -358,6 +358,16 @@ class dashboardModel extends Model
     	return $grupos;
     	/**PROBAR PARA VER SI FUNCIONA**/    	
     }
+    
+    function getLabel($demora) {
+    	$sql = "SELECT count(FECHA_RECLAMO) AS CANT FROM vw_reclamos WHERE (ESTADO_RECLAMO='ENV' AND (TRUNC(SYSDATE - FECHA_RECLAMO)) ".$demora.")";
+    	$query = OCIParse(Database::con(), $sql);
+    	OCIExecute($query, OCI_DEFAULT);
+    	while (OCIFetch($query)){
+    		$cantidad = ociresult($query, "CANT");
+    	}
+    	return $cantidad;    	
+    }
 }
 
 ?>
