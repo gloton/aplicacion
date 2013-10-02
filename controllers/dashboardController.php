@@ -32,25 +32,25 @@ class dashboardController extends Controller
     		$get_dia = date("l", time()-$i*24*60*60);
     		switch ($get_dia){
     			case "Monday":
-    				$dia = "'L'";
+    				$dia = "'L<br>".date("d/m/Y", time()-$i*24*60*60)."'";
     				break;
     			case "Tuesday":
-    				$dia = "'M'";
+    				$dia = "'M<br>".date("d/m/Y", time()-$i*24*60*60)."'";
     				break;
     			case "Wednesday":
-    				$dia = "'M'";
+    				$dia = "'M<br>".date("d/m/Y", time()-$i*24*60*60)."'";
     				break;
     			case "Thursday":
-    				$dia = "'J'";
+    				$dia = "'J<br>".date("d/m/Y", time()-$i*24*60*60)."'";
     				break;
     			case "Friday":
-    				$dia = "'V'";
+    				$dia = "'V<br>".date("d/m/Y", time()-$i*24*60*60)."'";
     				break;
     			case "Saturday":
-    				$dia = "'S'";
+    				$dia = "'S<br>".date("d/m/Y", time()-$i*24*60*60)."'";
     				break;
     			case "Sunday":
-    				$dia = "'D'";
+    				$dia = "'D<br>".date("d/m/Y", time()-$i*24*60*60)."'";
     				break;
     		}
     		//crea un array con los ultimos 7 dias, nombrandolo con la primer letra de la semana

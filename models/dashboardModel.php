@@ -330,7 +330,7 @@ class dashboardModel extends Model
     			}
     			//echo '<script type="text/javascript">alert("Imprime variable i+1 '.$reg["FS"][$i+1].'");</script>';
     			 
-    			if ($reg["FS"][$i] != $reg["FS"][$i+1] OR end($mesesFSfechas)== $reg["FS"][$i+1]) {
+    			if ($reg["FS"][$i] != @$reg["FS"][$i+1] OR end($mesesFSfechas)== $reg["FS"][$i+1]) {
     				//echo '<script type="text/javascript">alert("GuardarB");</script>' ;
     				$grupo1[] = $menosde30;
     				$grupo2[] = $menosde60;

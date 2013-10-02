@@ -91,7 +91,7 @@ $(function () {
             }]
         });
     });
-
+//fin cantidad de resolucioness
 $(function () {
         $('#sw-tr-dia').highcharts({
 
