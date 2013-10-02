@@ -71,7 +71,7 @@ class dashboardController extends Controller
 		/* LABELS DEL INDEX INICIO*/		
 		//rellenar los label
     	$this->_view->label_entre0y2 = $this->_dashboard->getLabel("<= 2");
-    	$this->_view->label_entre3y5 = $this->_dashboard->getLabel("<= 5");
+    	$this->_view->label_entre3y5 = $this->_dashboard->getLabel("> 2 AND (TRUNC(SYSDATE - FECHA_RECLAMO)) <= 5");
     	$this->_view->label_mayora5 = $this->_dashboard->getLabel(" > 5");
 
 		/* LABELS DEL INDEX FIN*/		
@@ -81,6 +81,8 @@ class dashboardController extends Controller
     	$dias_semana_ordenados = implode(',',$dias_semana);	
     	/* DIAS DE LA SEMANA L-D FIN*/
     	/* TABLA CANTIDAD DE RESOLUCIONES INICIO*/
+    	$cantEstEnv = $this->_dashboard->getDiaCant($diasMes,'FECHA_RECLAMO','ESTADO_RECLAMO','ENV');
+    	$cantEstEnv_ordenados = implode(',',$cantEstEnv);
     	$cantEstFin = $this->_dashboard->getDiaCant($diasMes,'FECHA_RECLAMO','ESTADO_RECLAMO','FIN');
     	$cantEstFin_ordenados = implode(',',$cantEstFin);
     	$cantEstSol = $this->_dashboard->getDiaCant($diasMes,'FECHA_RECLAMO','ESTADO_RECLAMO','SOL');
@@ -103,25 +105,27 @@ class dashboardController extends Controller
     	$ruta_diajs = ROOT . "views".DS."dashboard".DS."js".DS."graficos".DS."dia.js";
     	$guiDia = file_get_contents($ruta_diajs);
     	$patronesDia[0] = '{{DIASDELASEMANA}}';
-    	$patronesDia[1] = '{{ESTFINDIA}}';
-    	$patronesDia[2] = '{{ESTSOLDIA}}';
-    	$patronesDia[3] = '{{MOTIVOERRDIA}}';
-    	$patronesDia[4] = '{{MOTIVOASEDIA}}';
-    	$patronesDia[5] = '{{CANTRECLRCEDIA}}';
-    	$patronesDia[6] = '{{CANTRECLMSDIA}}';
-    	$patronesDia[7] = '{{GRUPO1DIA}}';
-    	$patronesDia[8] = '{{GRUPO2DIA}}';
-    	$patronesDia[9] = '{{GRUPO3DIA}}';
+    	$patronesDia[1] = '{{ESTENVDIA}}';
+    	$patronesDia[2] = '{{ESTFINDIA}}';
+    	$patronesDia[3] = '{{ESTSOLDIA}}';
+    	$patronesDia[4] = '{{MOTIVOERRDIA}}';
+    	$patronesDia[5] = '{{MOTIVOASEDIA}}';
+    	$patronesDia[6] = '{{CANTRECLRCEDIA}}';
+    	$patronesDia[7] = '{{CANTRECLMSDIA}}';
+    	$patronesDia[8] = '{{GRUPO1DIA}}';
+    	$patronesDia[9] = '{{GRUPO2DIA}}';
+    	$patronesDia[10] = '{{GRUPO3DIA}}';
     	$sustitucionesDia[0] = $dias_semana_ordenados;
-    	$sustitucionesDia[1] = $cantEstFin_ordenados;
-    	$sustitucionesDia[2] = $cantEstSol_ordenados;
-    	$sustitucionesDia[3] = $cantMotivoErr_ordenados;
-    	$sustitucionesDia[4] = $cantMotivoAse_ordenados;    	
-    	$sustitucionesDia[5] = $cantReclRCE_ordenados;
-    	$sustitucionesDia[6] = $cantReclMS_ordenados;
-    	$sustitucionesDia[7] = $grupo1_ordenados;
-    	$sustitucionesDia[8] = $grupo2_ordenados;
-    	$sustitucionesDia[9] = $grupo3_ordenados;
+    	$sustitucionesDia[1] = $cantEstEnv_ordenados;
+    	$sustitucionesDia[2] = $cantEstFin_ordenados;
+    	$sustitucionesDia[3] = $cantEstSol_ordenados;
+    	$sustitucionesDia[4] = $cantMotivoErr_ordenados;
+    	$sustitucionesDia[5] = $cantMotivoAse_ordenados;    	
+    	$sustitucionesDia[6] = $cantReclRCE_ordenados;
+    	$sustitucionesDia[7] = $cantReclMS_ordenados;
+    	$sustitucionesDia[8] = $grupo1_ordenados;
+    	$sustitucionesDia[9] = $grupo2_ordenados;
+    	$sustitucionesDia[10] = $grupo3_ordenados;
     	    	
     	$htmlDia = str_replace($patronesDia,$sustitucionesDia, $guiDia);
     	$this->_view->cod_diajs = $htmlDia;

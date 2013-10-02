@@ -1,6 +1,6 @@
 /*!
-* Pantalla graficos Dashboard Tickets Clínica Dávila
-* Copyright 2013 Clínica Dávila.
+* Pantalla graficos Dashboard Tickets Clï¿½nica Dï¿½vila
+* Copyright 2013 ClÃ­nica DÃ¡vila.
 * Developed by NsClick
 * Legenda containers:       f1: Graficos fijos 1
 */
@@ -80,13 +80,17 @@ $(function () {
             },
             <!--- nombre de la serie y valores  (va con variables PHP)//-->
             series: [{
-                name: 'FIN',
-                data: [{{ESTFINDIA}}],
+                name: 'ENV',
+                data: [{{ESTENVDIA}}],
                 color:'#b4cc6a'
             }, {
                 name: 'SOL',
                 data: [{{ESTSOLDIA}}],
-                color:'#8ba353'
+                color:'#8ba353'            	
+            }, {
+                name: 'FIN',
+                data: [{{ESTFINDIA}}],
+                color:'#516620'
             }]
         });
     });
@@ -166,15 +170,15 @@ $(function () {
             },
             <!--- nombre de la serie y valores  (va con variables PHP)//-->
             series: [{
-                name: '0-30',
+                name: '0-2',
                 data: [{{GRUPO1DIA}}],
                 color:'#8ba353'
             }, {
-                name: '31-60',
+                name: '3-5',
                 data: [{{GRUPO2DIA}}],
                 color:'#fdf001'
             }, {
-                name: '61- mas de 61',
+                name: 'Mayor a 5',
                 data: [{{GRUPO3DIA}}],
                 color:'#ff0000'
             }]
