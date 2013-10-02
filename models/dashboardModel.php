@@ -32,8 +32,13 @@ class dashboardModel extends Model
     //de los ultimos 30 dias, y si hay cerrados en ese dia quedara con el valor 0
     //el array a retornar puede ser mayor a 30
     public function getReclDia($diasMes) {
+    	/*
     	$sql = "SELECT FECHA_SOLUCION AS FS,TO_DATE(FECHA_SOLUCION, 'dd/mm/yy')-TO_DATE(FECHA_RECLAMO, 'dd/mm/yy') DIAS 
     			FROM vw_reclamos WHERE (FECHA_SOLUCION IS NOT NULL) AND (FECHA_SOLUCION BETWEEN '".current($diasMes)."' AND '".end($diasMes)."') 
+    			ORDER BY FECHA_SOLUCION";
+    	*/
+    	$sql = "SELECT FECHA_SOLUCION AS FS,TO_DATE(FECHA_SOLUCION, 'dd/mm/yy')-TO_DATE(FECHA_RECLAMO, 'dd/mm/yy') DIAS 
+    			FROM vw_reclamos WHERE (ESTADO_RECLAMO = 'FIN') AND (FECHA_SOLUCION IS NOT NULL) AND (FECHA_SOLUCION BETWEEN '".current($diasMes)."' AND '".end($diasMes)."') 
     			ORDER BY FECHA_SOLUCION";
     	$query = OCIParse(Database::con(), $sql);
     	OCIExecute($query, OCI_DEFAULT);
@@ -69,11 +74,11 @@ class dashboardModel extends Model
     			$restDia--; //-->avanzar un dia en $dia
 			} elseif ($dia == $reg["FS"][$i]) {
 				//echo '<script type="text/javascript">alert("i  = '.$i.'");</script>' ;
-				if ($reg["DIAS"][$i] <= 30) {
+				if ($reg["DIAS"][$i] <= 2) {
 					$menosde30++;
-				} elseif ($reg["DIAS"][$i] <= 60) {
+				} elseif ($reg["DIAS"][$i] <= 5) {
 					$menosde60++;
-				} elseif ($reg["DIAS"][$i] > 60) {
+				} elseif ($reg["DIAS"][$i] > 5) {
 					$masde60++;
 				}
 				if (!isset($reg["FS"][$i+1])) {
